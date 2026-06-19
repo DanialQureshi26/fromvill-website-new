@@ -482,7 +482,7 @@ function HomePage({ navigate }) {
             <Sparkles size={17} />
             <span>Fromvill AI / Research / Innovation</span>
           </div>
-          <h1>Professional AI systems with a sharper 3D digital presence.</h1>
+          <h1>Engineering AI Architectures for Intelligent Automation and Research.</h1>
           <p>
             Fromvill helps businesses, researchers, startups, and professionals turn ideas into AI workflows,
             automation tools, chatbots, dashboards, and modern web products.
