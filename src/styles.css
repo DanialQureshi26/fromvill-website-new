@@ -747,50 +747,151 @@ h3 {
 
 .case-study-grid {
   grid-template-columns: 1fr;
-  gap: 26px;
+  gap: 34px;
+  perspective: 1400px;
 }
 
 .case-study-card {
-  min-height: 420px;
+  position: relative;
+  min-height: auto;
   display: grid;
-  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   overflow: hidden;
+  isolation: isolate;
+  border-color: rgba(34, 217, 255, 0.18);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(34, 217, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 92% 86%, rgba(119, 88, 255, 0.18), transparent 32%),
+    linear-gradient(145deg, rgba(8, 16, 62, 0.98), rgba(2, 5, 18, 0.97));
+  box-shadow:
+    0 34px 110px rgba(2, 5, 18, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+}
+
+.case-study-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: "";
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.12) 42%, transparent 58%);
+  opacity: 0;
+  transform: translateX(-130%) skewX(-18deg);
+  transition:
+    opacity 240ms ease,
+    transform 680ms ease;
+  pointer-events: none;
+}
+
+.case-study-card::after {
+  position: absolute;
+  right: -60px;
+  bottom: -80px;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  content: "";
+  background: radial-gradient(circle, rgba(34, 217, 255, 0.22), transparent 66%);
+  filter: blur(14px);
+}
+
+.case-study-card:hover {
+  transform: translateY(-10px) rotateX(1.2deg) rotateY(-1.4deg);
+  border-color: rgba(34, 217, 255, 0.42);
+  box-shadow:
+    0 44px 130px rgba(2, 5, 18, 0.48),
+    0 0 0 1px rgba(34, 217, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.case-study-card:hover::before {
+  opacity: 1;
+  transform: translateX(135%) skewX(-18deg);
 }
 
 .case-study-image {
   position: relative;
-  min-height: 100%;
+  min-height: auto;
+  display: flex;
+  aspect-ratio: 16 / 8.8;
+  padding: 18px;
   overflow: hidden;
-  background: var(--brand);
+  background:
+    linear-gradient(rgba(34, 217, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 217, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  background-size:
+    34px 34px,
+    34px 34px,
+    auto;
+  transform-style: preserve-3d;
 }
 
 .case-study-image::after {
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(145deg, transparent 45%, rgba(34, 217, 255, 0.16));
+  background:
+    linear-gradient(145deg, transparent 48%, rgba(34, 217, 255, 0.18)),
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.14), transparent 28%);
   pointer-events: none;
 }
 
 .case-study-image img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  min-height: 420px;
+  min-height: 0;
   object-fit: cover;
-  transition: transform 240ms ease;
+  border-radius: 8px;
+  box-shadow:
+    0 28px 78px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.18);
+  transform: translateZ(28px) scale(0.99);
+  transition:
+    transform 260ms ease,
+    filter 260ms ease;
 }
 
 .case-study-card:hover .case-study-image img {
-  transform: scale(1.035);
+  filter: saturate(1.08) contrast(1.02);
+  transform: translateZ(54px) scale(1.025);
+}
+
+.case-study-number {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  background: rgba(3, 6, 17, 0.72);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .case-study-content {
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: clamp(24px, 4vw, 46px);
+  align-items: start;
+  padding: clamp(28px, 4vw, 48px);
+  color: var(--text);
+  transform: translateZ(36px);
+}
+
+.case-study-copy {
+  min-width: 0;
 }
 
 .case-study-meta {
@@ -801,8 +902,6 @@ h3 {
   margin-bottom: 18px;
 }
 
-.case-study-meta span,
-.case-study-meta small,
 .pricing-card > span {
   width: fit-content;
   border: 1px solid rgba(13, 26, 99, 0.15);
@@ -815,37 +914,60 @@ h3 {
   text-transform: uppercase;
 }
 
+.case-study-meta span,
 .case-study-meta small {
-  color: #536185;
-  background: rgba(13, 26, 99, 0.035);
+  width: fit-content;
+  border: 1px solid rgba(34, 217, 255, 0.18);
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: var(--cyan);
+  background: rgba(34, 217, 255, 0.08);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.case-study-meta small {
+  color: rgba(248, 251, 255, 0.72);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .pricing-card > span {
   margin-bottom: 18px;
 }
 
-.case-study-content > p {
-  margin-bottom: 22px;
+.case-study-content h3 {
+  max-width: 760px;
+  color: var(--text);
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 0.98;
+}
+
+.case-study-copy > p {
+  margin-bottom: 26px;
+  color: var(--blue-soft);
   font-size: 1.02rem;
 }
 
 .case-study-details {
   display: grid;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 0;
+  margin: 2px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .case-study-details div {
-  border: 1px solid rgba(13, 26, 99, 0.08);
-  border-radius: 8px;
-  padding: 14px;
-  background: rgba(13, 26, 99, 0.035);
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .case-study-details strong {
   display: block;
-  margin-bottom: 6px;
-  color: #101a43;
+  color: var(--cyan);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -853,6 +975,7 @@ h3 {
 
 .case-study-details p {
   margin-bottom: 0;
+  color: rgba(248, 251, 255, 0.72);
   font-size: 0.94rem;
 }
 
@@ -860,16 +983,16 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: auto;
-  padding-top: 12px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .tag-list small {
-  border: 1px solid rgba(13, 26, 99, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 999px;
   padding: 6px 9px;
-  color: #304171;
-  background: rgba(13, 26, 99, 0.05);
+  color: rgba(248, 251, 255, 0.82);
+  background: rgba(255, 255, 255, 0.07);
   font-weight: 800;
 }
 
@@ -877,13 +1000,24 @@ h3 {
   width: fit-content;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin-top: 18px;
-  border: 0;
-  padding: 0;
-  color: var(--brand);
-  background: transparent;
+  border: 1px solid rgba(34, 217, 255, 0.32);
+  border-radius: 999px;
+  padding: 11px 14px;
+  color: var(--text);
+  background: rgba(34, 217, 255, 0.1);
   font-weight: 900;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.text-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 217, 255, 0.58);
+  background: rgba(34, 217, 255, 0.16);
 }
 
 .process-grid {
@@ -1288,10 +1422,35 @@ h3 {
 
   .case-study-card {
     grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .case-study-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .case-study-image {
+    min-height: auto;
+    aspect-ratio: 16 / 10;
+    padding: 12px;
   }
 
   .case-study-image img {
-    min-height: 260px;
+    min-height: 0;
+  }
+
+  .case-study-content {
+    grid-template-columns: 1fr;
+    transform: none;
+  }
+
+  .case-study-content h3 {
+    font-size: 2.2rem;
+  }
+
+  .case-study-details div {
+    grid-template-columns: 1fr;
+    gap: 7px;
   }
 
   .process-step {

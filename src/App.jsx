@@ -193,7 +193,7 @@ const projects = [
     title: "Vision-Based Defect Detection System",
     category: "Computer Vision",
     client: "Construction inspection team",
-    image: "/case-studies/vision-inspection.svg",
+    image: "/case-studies/vision-defect-detection.png",
     summary: "An AI inspection workflow for identifying visual defects from site images and turning them into review-ready findings.",
     challenge: "Manual image review made defect tracking slow, inconsistent, and difficult to scale across inspection batches.",
     solution: "Designed a computer vision pipeline with detection classes, image preprocessing, confidence filtering, and export-ready review outputs.",
@@ -204,7 +204,7 @@ const projects = [
     title: "Research Paper Automation Toolkit",
     category: "Research AI",
     client: "Academic research group",
-    image: "/case-studies/research-toolkit.svg",
+    image: "/case-studies/research-paper-automation.png",
     summary: "A structured research assistant workflow for literature review, manuscript preparation, figures, tables, and formatting.",
     challenge: "The team needed a cleaner way to organize references, draft sections, prepare outputs, and reduce repetitive publication tasks.",
     solution: "Built an AI-supported toolkit for review notes, manuscript structure, table generation, figure planning, and formatting checkpoints.",
@@ -215,7 +215,7 @@ const projects = [
     title: "Custom Business Support Agent",
     category: "AI Agents",
     client: "Service-based business",
-    image: "/case-studies/chatbot-agent.svg",
+    image: "/case-studies/business-support-agent.png",
     summary: "A chatbot and service-routing assistant that answers FAQs, qualifies requests, and guides customers to the next step.",
     challenge: "Customer questions were repetitive, response quality varied, and simple inquiries were taking time away from core operations.",
     solution: "Planned a guided AI agent flow with business-specific response logic, service routing, escalation paths, and WhatsApp-friendly actions.",
@@ -226,7 +226,7 @@ const projects = [
     title: "ML Classification Dashboard",
     category: "Machine Learning",
     client: "Analytics and data team",
-    image: "/case-studies/ml-dashboard.svg",
+    image: "/case-studies/ml-classification-dashboard.png",
     summary: "A model evaluation dashboard for comparing classification results, metrics, and experiment performance.",
     challenge: "Model results were scattered across notebooks and files, making it hard to compare accuracy, errors, and deployment readiness.",
     solution: "Created a dashboard-style interface for model comparison, evaluation metrics, confusion insights, and experiment summaries.",
@@ -237,7 +237,7 @@ const projects = [
     title: "Smart Data Analysis System",
     category: "Data Science",
     client: "Operations reporting team",
-    image: "/case-studies/data-system.svg",
+    image: "/case-studies/smart-data-analysis.png",
     summary: "An automated analytics workflow for cleaning data, preparing charts, generating reports, and identifying useful trends.",
     challenge: "Reporting required repeated spreadsheet cleanup, manual charting, and time-consuming summary preparation.",
     solution: "Developed a data pipeline structure with cleaning steps, visual summaries, report-ready outputs, and repeatable analysis logic.",
@@ -248,7 +248,7 @@ const projects = [
     title: "AI Website & Digital Platform",
     category: "Web Development",
     client: "AI-focused brand",
-    image: "/case-studies/ai-platform.svg",
+    image: "/case-studies/ai-website-platform.png",
     summary: "A responsive AI brand platform with modern navigation, service pages, conversion actions, and deployment-ready structure.",
     challenge: "The client needed a credible digital presence that explained technical services without overwhelming visitors.",
     solution: "Built a Vite React website with routed pages, 3D-inspired visuals, clean service structure, contact actions, and deployment assets.",
@@ -631,7 +631,7 @@ function ServicesPage() {
   );
 }
 
-function WorkPage() {
+function WorkPage({ navigate }) {
   return (
     <PageLayout
       eyebrow="Work"
@@ -639,18 +639,30 @@ function WorkPage() {
       description="A closer look at Fromvill-style project work across AI products, research workflows, analytics systems, and digital platforms."
     >
       <div className="case-study-grid">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <article className="case-study-card" key={project.title}>
             <div className="case-study-image">
-              <img src={project.image} alt={`${project.title} case study visual`} />
+              <span className="case-study-number">{String(index + 1).padStart(2, "0")}</span>
+              <img src={project.image} alt={`${project.title} case study visual`} loading="lazy" />
             </div>
             <div className="case-study-content">
-              <div className="case-study-meta">
-                <span>{project.category}</span>
-                <small>{project.client}</small>
+              <div className="case-study-copy">
+                <div className="case-study-meta">
+                  <span>{project.category}</span>
+                  <small>{project.client}</small>
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <div className="tag-list">
+                  {project.tags.map((tag) => (
+                    <small key={tag}>{tag}</small>
+                  ))}
+                </div>
+                <a className="text-button" href="/contact" onClick={(event) => handleInternalClick(event, "/contact", navigate)}>
+                  <span>Plan Similar Build</span>
+                  <ChevronRight size={17} />
+                </a>
               </div>
-              <h3>{project.title}</h3>
-              <p>{project.summary}</p>
               <div className="case-study-details">
                 <div>
                   <strong>Challenge</strong>
@@ -665,15 +677,6 @@ function WorkPage() {
                   <p>{project.outcome}</p>
                 </div>
               </div>
-              <div className="tag-list">
-                {project.tags.map((tag) => (
-                  <small key={tag}>{tag}</small>
-                ))}
-              </div>
-              <button className="text-button" type="button">
-                <span>View Case Study</span>
-                <ChevronRight size={17} />
-              </button>
             </div>
           </article>
         ))}
@@ -902,7 +905,7 @@ function App() {
       case "/services":
         return <ServicesPage />;
       case "/work":
-        return <WorkPage />;
+        return <WorkPage navigate={navigate} />;
       case "/process":
         return <ProcessPage />;
       case "/pricing":
