@@ -692,74 +692,42 @@ function PricingPage({ navigate }) {
 }
 
 function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Connect this form to an email service, serverless function, or CRM endpoint when backend handling is ready.
-    setSubmitted(true);
-  };
-
   return (
     <PageLayout
       eyebrow="Contact"
       title="Let's Build Something Intelligent Together"
       description="Tell Fromvill what you want to build, automate, analyze, or publish."
     >
-      <div className="contact-layout">
-        <div className="contact-panel">
-          <h2>Project contact</h2>
-          <p>Share the goal, timeline, and service area. A clear brief makes the next step faster.</p>
-          <div className="contact-list">
-            <a href={`mailto:${contactEmail}`}>
-              <Mail size={19} />
-              <span>{contactEmail}</span>
-            </a>
-            <a href={whatsappLink} target="_blank" rel="noreferrer">
-              <Phone size={19} />
-              <span>+923304516902</span>
-            </a>
-            <div>
-              <MapPin size={19} />
-              <span>Lahore, Punjab</span>
+      <div className="contact-layout contact-layout--single">
+        <div className="contact-panel contact-panel--center">
+          <div>
+            <h2>Project contact</h2>
+            <p>Share the goal, timeline, and service area through email or WhatsApp. A clear brief makes the next step faster.</p>
+          </div>
+          <div className="contact-panel__content">
+            <div className="contact-list">
+              <a href={`mailto:${contactEmail}`}>
+                <Mail size={19} />
+                <span>{contactEmail}</span>
+              </a>
+              <a href={whatsappLink} target="_blank" rel="noreferrer">
+                <Phone size={19} />
+                <span>+923304516902</span>
+              </a>
+              <div>
+                <MapPin size={19} />
+                <span>Lahore, Punjab</span>
+              </div>
+            </div>
+            <div className="contact-actions">
+              <a className="button button--whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">
+                <MessageCircle size={18} />
+                <span>Chat on WhatsApp</span>
+              </a>
+              <SocialLinks />
             </div>
           </div>
-          <a className="button button--whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">
-            <MessageCircle size={18} />
-            <span>Chat on WhatsApp</span>
-          </a>
-          <SocialLinks />
         </div>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" placeholder="Your name" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-          <label>
-            <span>Service Needed</span>
-            <select name="service" defaultValue="" required>
-              <option value="" disabled>
-                Select a service
-              </option>
-              {services.map((service) => (
-                <option key={service.title}>{service.title}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea name="message" rows="5" placeholder="Tell us about your project" required />
-          </label>
-          <button className="button button--primary" type="submit">
-            <Send size={18} />
-            <span>Submit</span>
-          </button>
-          {submitted && <p className="form-note">Thanks. The frontend form is ready for backend connection.</p>}
-        </form>
       </div>
     </PageLayout>
   );
