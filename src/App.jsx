@@ -190,40 +190,70 @@ const processSteps = [
 
 const projects = [
   {
-    title: "AI Defect Detection System",
+    title: "Vision-Based Defect Detection System",
     category: "Computer Vision",
-    description: "Computer vision model for detecting structural and building defects from images.",
-    tags: ["YOLO", "Computer Vision", "Defect Detection"],
+    client: "Construction inspection team",
+    image: "/case-studies/vision-inspection.svg",
+    summary: "An AI inspection workflow for identifying visual defects from site images and turning them into review-ready findings.",
+    challenge: "Manual image review made defect tracking slow, inconsistent, and difficult to scale across inspection batches.",
+    solution: "Designed a computer vision pipeline with detection classes, image preprocessing, confidence filtering, and export-ready review outputs.",
+    outcome: "Faster review cycles, clearer defect evidence, and a repeatable workflow for image-based quality checks.",
+    tags: ["YOLO", "Computer Vision", "Inspection AI"],
   },
   {
     title: "Research Paper Automation Toolkit",
     category: "Research AI",
-    description: "AI-assisted workflow for literature review, manuscript writing, figures, tables, and formatting.",
-    tags: ["Research", "Automation", "AI Writing"],
+    client: "Academic research group",
+    image: "/case-studies/research-toolkit.svg",
+    summary: "A structured research assistant workflow for literature review, manuscript preparation, figures, tables, and formatting.",
+    challenge: "The team needed a cleaner way to organize references, draft sections, prepare outputs, and reduce repetitive publication tasks.",
+    solution: "Built an AI-supported toolkit for review notes, manuscript structure, table generation, figure planning, and formatting checkpoints.",
+    outcome: "More organized writing sprints, reusable research assets, and faster preparation for publication-ready submissions.",
+    tags: ["Research AI", "Automation", "Publication Support"],
   },
   {
-    title: "Custom Business Chatbot",
+    title: "Custom Business Support Agent",
     category: "AI Agents",
-    description: "AI chatbot for customer support, service guidance, automated responses, and business workflows.",
-    tags: ["LLM", "Chatbot", "Automation"],
+    client: "Service-based business",
+    image: "/case-studies/chatbot-agent.svg",
+    summary: "A chatbot and service-routing assistant that answers FAQs, qualifies requests, and guides customers to the next step.",
+    challenge: "Customer questions were repetitive, response quality varied, and simple inquiries were taking time away from core operations.",
+    solution: "Planned a guided AI agent flow with business-specific response logic, service routing, escalation paths, and WhatsApp-friendly actions.",
+    outcome: "Cleaner customer intake, quicker answers for common questions, and a more professional first-touch support experience.",
+    tags: ["LLM", "Chatbot", "Workflow Agent"],
   },
   {
     title: "ML Classification Dashboard",
     category: "Machine Learning",
-    description: "Dashboard for training, evaluating, and comparing machine learning models.",
-    tags: ["ML", "Dashboard", "Analytics"],
+    client: "Analytics and data team",
+    image: "/case-studies/ml-dashboard.svg",
+    summary: "A model evaluation dashboard for comparing classification results, metrics, and experiment performance.",
+    challenge: "Model results were scattered across notebooks and files, making it hard to compare accuracy, errors, and deployment readiness.",
+    solution: "Created a dashboard-style interface for model comparison, evaluation metrics, confusion insights, and experiment summaries.",
+    outcome: "Clearer model selection, easier reporting, and a more repeatable evaluation process for machine learning experiments.",
+    tags: ["ML", "Dashboard", "Model Evaluation"],
   },
   {
     title: "Smart Data Analysis System",
     category: "Data Science",
-    description: "Automated pipeline for data cleaning, visualization, reporting, and predictive analytics.",
-    tags: ["Data Analysis", "Visualization", "Reports"],
+    client: "Operations reporting team",
+    image: "/case-studies/data-system.svg",
+    summary: "An automated analytics workflow for cleaning data, preparing charts, generating reports, and identifying useful trends.",
+    challenge: "Reporting required repeated spreadsheet cleanup, manual charting, and time-consuming summary preparation.",
+    solution: "Developed a data pipeline structure with cleaning steps, visual summaries, report-ready outputs, and repeatable analysis logic.",
+    outcome: "Reduced manual reporting effort, improved consistency, and gave the team clearer data views for decision-making.",
+    tags: ["Data Pipeline", "Visualization", "Reports"],
   },
   {
     title: "AI Website & Digital Platform",
     category: "Web Development",
-    description: "Modern responsive website and platform development for AI-focused brands and businesses.",
-    tags: ["Web", "UI/UX", "Development"],
+    client: "AI-focused brand",
+    image: "/case-studies/ai-platform.svg",
+    summary: "A responsive AI brand platform with modern navigation, service pages, conversion actions, and deployment-ready structure.",
+    challenge: "The client needed a credible digital presence that explained technical services without overwhelming visitors.",
+    solution: "Built a Vite React website with routed pages, 3D-inspired visuals, clean service structure, contact actions, and deployment assets.",
+    outcome: "A faster, clearer, and more professional web presence ready for Vercel or static hosting workflows.",
+    tags: ["React", "UI/UX", "Vercel Ready"],
   },
 ];
 
@@ -605,24 +635,46 @@ function WorkPage() {
   return (
     <PageLayout
       eyebrow="Work"
-      title="Selected Work & Project Areas"
-      description="Representative project directions for AI products, research workflows, analytics systems, and digital platforms."
+      title="Client Case Studies & Project Outcomes"
+      description="A closer look at Fromvill-style project work across AI products, research workflows, analytics systems, and digital platforms."
     >
-      <div className="work-grid">
+      <div className="case-study-grid">
         {projects.map((project) => (
-          <article className="work-card" key={project.title}>
-            <span>{project.category}</span>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <div className="tag-list">
-              {project.tags.map((tag) => (
-                <small key={tag}>{tag}</small>
-              ))}
+          <article className="case-study-card" key={project.title}>
+            <div className="case-study-image">
+              <img src={project.image} alt={`${project.title} case study visual`} />
             </div>
-            <button className="text-button" type="button">
-              <span>View Details</span>
-              <ChevronRight size={17} />
-            </button>
+            <div className="case-study-content">
+              <div className="case-study-meta">
+                <span>{project.category}</span>
+                <small>{project.client}</small>
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+              <div className="case-study-details">
+                <div>
+                  <strong>Challenge</strong>
+                  <p>{project.challenge}</p>
+                </div>
+                <div>
+                  <strong>Solution</strong>
+                  <p>{project.solution}</p>
+                </div>
+                <div>
+                  <strong>Outcome</strong>
+                  <p>{project.outcome}</p>
+                </div>
+              </div>
+              <div className="tag-list">
+                {project.tags.map((tag) => (
+                  <small key={tag}>{tag}</small>
+                ))}
+              </div>
+              <button className="text-button" type="button">
+                <span>View Case Study</span>
+                <ChevronRight size={17} />
+              </button>
+            </div>
           </article>
         ))}
       </div>

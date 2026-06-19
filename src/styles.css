@@ -528,7 +528,7 @@ h3 {
 
 .preview-grid,
 .service-grid,
-.work-grid,
+.case-study-grid,
 .pricing-grid,
 .testimonial-grid,
 .benefit-grid,
@@ -544,7 +544,6 @@ h3 {
 }
 
 .route-cards,
-.work-grid,
 .pricing-grid,
 .testimonial-grid,
 .benefit-grid,
@@ -554,7 +553,7 @@ h3 {
 
 .preview-card,
 .service-card,
-.work-card,
+.case-study-card,
 .pricing-card,
 .testimonial-card,
 .benefit-card,
@@ -588,7 +587,7 @@ h3 {
 .service-card:hover,
 .agent-card:hover,
 .benefit-card:hover,
-.work-card:hover,
+.case-study-card:hover,
 .route-card:hover {
   transform: translateY(-6px);
   border-color: rgba(13, 26, 99, 0.28);
@@ -606,7 +605,7 @@ h3 {
 .service-card h3,
 .agent-card h3,
 .benefit-card h3,
-.work-card h3,
+.case-study-card h3,
 .pricing-card h3 {
   color: #101a43;
 }
@@ -614,7 +613,7 @@ h3 {
 .preview-card p,
 .service-card p,
 .agent-card p,
-.work-card p,
+.case-study-card p,
 .pricing-card p,
 .testimonial-card p,
 .text-panel p,
@@ -746,20 +745,66 @@ h3 {
   background: rgba(13, 26, 99, 0.06);
 }
 
-.work-card {
-  min-height: 290px;
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
+.case-study-grid {
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+.case-study-card {
+  min-height: 420px;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
+  overflow: hidden;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
 }
 
-.work-card > span,
+.case-study-image {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--brand);
+}
+
+.case-study-image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(145deg, transparent 45%, rgba(34, 217, 255, 0.16));
+  pointer-events: none;
+}
+
+.case-study-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  transition: transform 240ms ease;
+}
+
+.case-study-card:hover .case-study-image img {
+  transform: scale(1.035);
+}
+
+.case-study-content {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+}
+
+.case-study-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.case-study-meta span,
+.case-study-meta small,
 .pricing-card > span {
   width: fit-content;
-  margin-bottom: 18px;
   border: 1px solid rgba(13, 26, 99, 0.15);
   border-radius: 999px;
   padding: 6px 10px;
@@ -768,6 +813,47 @@ h3 {
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.case-study-meta small {
+  color: #536185;
+  background: rgba(13, 26, 99, 0.035);
+}
+
+.pricing-card > span {
+  margin-bottom: 18px;
+}
+
+.case-study-content > p {
+  margin-bottom: 22px;
+  font-size: 1.02rem;
+}
+
+.case-study-details {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.case-study-details div {
+  border: 1px solid rgba(13, 26, 99, 0.08);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(13, 26, 99, 0.035);
+}
+
+.case-study-details strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #101a43;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.case-study-details p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
 }
 
 .tag-list {
@@ -1117,7 +1203,6 @@ h3 {
   .preview-grid,
   .service-grid,
   .route-cards,
-  .work-grid,
   .pricing-grid,
   .testimonial-grid,
   .benefit-grid,
@@ -1193,13 +1278,20 @@ h3 {
   .preview-grid,
   .service-grid,
   .route-cards,
-  .work-grid,
   .pricing-grid,
   .testimonial-grid,
   .benefit-grid,
   .agent-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .case-study-card {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-image img {
+    min-height: 260px;
   }
 
   .process-step {
