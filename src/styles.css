@@ -1252,6 +1252,24 @@ h3 {
   color: var(--cyan);
 }
 
+.footer-brand .social-links {
+  width: min(100%, 420px);
+  justify-content: center;
+}
+
+.footer-grid .social-links a {
+  margin-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.footer-grid .social-links span {
+  margin-bottom: 0;
+  color: inherit;
+}
+
 .footer-whatsapp {
   width: fit-content;
   margin-top: 14px;
