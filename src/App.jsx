@@ -767,31 +767,33 @@ function ContactPage() {
             <p>Share the goal, timeline, and service area through email or WhatsApp. A clear brief makes the next step faster.</p>
           </div>
           <div className="contact-panel__content">
-            <div className="contact-list">
-              <a href={`mailto:${contactEmail}`}>
-                <Mail size={19} />
-                <span>{contactEmail}</span>
-              </a>
-              <a href={whatsappLink} target="_blank" rel="noreferrer">
-                <Phone size={19} />
-                <span>+923304516902</span>
-              </a>
-              <div>
-                <MapPin size={19} />
-                <span>{primaryAddress}</span>
-              </div>
-              <a href={imranContact.phoneHref}>
-                <Phone size={19} />
-                <span>
-                  {imranContact.name}: {imranContact.phone}
-                </span>
-              </a>
-              <div>
-                <MapPin size={19} />
-                <span>
-                  {imranContact.name}: {imranContact.address}
-                </span>
-              </div>
+            <div className="contact-list contact-list--people">
+              <section className="contact-person" aria-label="Primary Fromvill contact">
+                <h3>Primary contact</h3>
+                <a href={`mailto:${contactEmail}`}>
+                  <Mail size={19} />
+                  <span>{contactEmail}</span>
+                </a>
+                <a href={whatsappLink} target="_blank" rel="noreferrer">
+                  <Phone size={19} />
+                  <span>+923304516902</span>
+                </a>
+                <div>
+                  <MapPin size={19} />
+                  <span>{primaryAddress}</span>
+                </div>
+              </section>
+              <section className="contact-person" aria-label={`${imranContact.name} contact`}>
+                <h3>{imranContact.name}</h3>
+                <a href={imranContact.phoneHref}>
+                  <Phone size={19} />
+                  <span>{imranContact.phone}</span>
+                </a>
+                <div>
+                  <MapPin size={19} />
+                  <span>{imranContact.address}</span>
+                </div>
+              </section>
             </div>
             <div className="contact-actions">
               <a className="button button--whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">

@@ -1175,6 +1175,29 @@ h3 {
   margin: 26px 0;
 }
 
+.contact-list--people {
+  gap: 22px;
+}
+
+.contact-person {
+  display: grid;
+  gap: 13px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(13, 26, 99, 0.12);
+}
+
+.contact-person:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.contact-person h3 {
+  margin: 0 0 2px;
+  color: #101a43;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
 .contact-list a,
 .contact-list div {
   display: flex;
