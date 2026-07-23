@@ -37,6 +37,13 @@ const logoFullPath = "/fromvill-logo.png";
 const logoWordmarkPath = "/fromvill-wordmark.png";
 const contactEmail = "danial@fromvill.com";
 const whatsappLink = "https://wa.me/923304516902";
+const primaryAddress = "Lahore, Pakistan";
+const imranContact = {
+  name: "Imran Kureshi",
+  phone: "+15714128281",
+  phoneHref: "tel:+15714128281",
+  address: "Chantilly, VA, USA",
+};
 
 const routes = [
   { label: "Home", path: "/" },
@@ -771,7 +778,19 @@ function ContactPage() {
               </a>
               <div>
                 <MapPin size={19} />
-                <span>Lahore, Punjab</span>
+                <span>{primaryAddress}</span>
+              </div>
+              <a href={imranContact.phoneHref}>
+                <Phone size={19} />
+                <span>
+                  {imranContact.name}: {imranContact.phone}
+                </span>
+              </a>
+              <div>
+                <MapPin size={19} />
+                <span>
+                  {imranContact.name}: {imranContact.address}
+                </span>
               </div>
             </div>
             <div className="contact-actions">
@@ -879,7 +898,7 @@ function Footer({ navigate }) {
           <a href={whatsappLink} target="_blank" rel="noreferrer">
             +923304516902
           </a>
-          <span>Lahore, Punjab</span>
+          <span>{primaryAddress}</span>
           <a className="footer-whatsapp" href={whatsappLink} target="_blank" rel="noreferrer">
             Chat on WhatsApp
           </a>
