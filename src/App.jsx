@@ -37,7 +37,7 @@ const logoFullPath = "/fromvill-logo.png";
 const logoWordmarkPath = "/fromvill-wordmark.png";
 const contactEmail = "danial@fromvill.com";
 const whatsappLink = "https://wa.me/923304516902";
-const primaryAddress = "Lahore, Pakistan";
+const primaryAddress = "Washington D.C. 20006";
 const imranContact = {
   name: "Imran Kureshi",
   phone: "+15714128281",
